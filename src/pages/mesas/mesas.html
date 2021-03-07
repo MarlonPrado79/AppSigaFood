@@ -1,0 +1,26 @@
+<!--Generated template for the MesasPage page-->
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+
+    <ion-title>Mesas</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <h2>Nome do vendedor</h2>
+    <button ion-item *ngFor="let item of items" (click)="showConta()">
+      
+      <ion-thumbnail item-start>
+        <img src="assets/imgs/mesa-fechada.jpg">
+      </ion-thumbnail>
+      
+      <h2>{{item.numMesa}}</h2>
+      <h2>{{item.Status}}</h2>
+
+    </button>
+  </ion-list>
+</ion-content>
