@@ -27,6 +27,12 @@ export class MesasPage {
     
   }
 
+  showClickMesa(){
+    console.log("clicou");
+    console.log(this.items);
+    this.navCtrl.push('VendaPage');
+  }
+
   showVenda(){
     console.log("clicou");
     console.log(this.items);

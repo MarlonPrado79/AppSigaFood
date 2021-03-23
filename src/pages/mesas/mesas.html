@@ -12,12 +12,21 @@
 <ion-content padding>
   <ion-list>
     <h2>Nome do vendedor</h2>
-    <button ion-item *ngFor="let item of items" (click)="showConta()">
+    <button ion-item *ngFor="let item of items" (click)="showClickMesa()">
       
       <ion-thumbnail item-start>
-        <img src="assets/imgs/mesa-fechada.jpg">
+        <div *ngIf = "item.Status == 'Fechado'">
+          <img src="assets/imgs/mesa-fechada.jpg">
+        </div>          
+
+        <div *ngIf = "item.Status != 'Fechado'">
+          <img src="assets/imgs/mesa-aberta.jpg">
+        </div>          
+
       </ion-thumbnail>
       
+
+
       <h2>{{item.numMesa}}</h2>
       <h2>{{item.Status}}</h2>
 
