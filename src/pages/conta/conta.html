@@ -1,27 +1,16 @@
 <!--Generated template for the ContaPage page-->
 <ion-header>
   <ion-navbar>
-    <ion-title>Conta</ion-title>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+
+    <ion-title>Conta do cliente</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <form [formGroup]="formGroup" (ngSubmit)="fazerVenda(); $event.preventDefault()">
-    <ion-item>
-      <ion-label stacked>Nome*</ion-label>   
-      <ion-input formControlName = "nome" type="text"></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-label stacked>Taxa de serviço*</ion-label>   
-      <ion-input formControlName = "taxa" type="numeric"></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-label stacked>Comandas*</ion-label>   
-      <ion-input formControlName = "comanda" type="numeric"></ion-input>
-    </ion-item>
-
-    <button ion-button block type="submit">Lançar produtos</button>
-  </form>
+    <h2>Conta do cliente</h2>
+    <p>Mesa = {{xx?.numMesa}}</p>
+    <h2>numMesa = {{items?.numMesa}}</h2>
 </ion-content>

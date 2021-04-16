@@ -6,13 +6,19 @@
     </button>
 
     <ion-title>Mesas</ion-title>
+    <h2>{{usuarioLogado?.nomeusuario}}</h2>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
   <ion-list>
-    <h2>Nome do vendedor</h2>
-    <button ion-item *ngFor="let item of items" (click)="showClickMesa()">
+    <h1>Nome do vendedor: {{usuarioLogado?.nomeusuario}}</h1>
+    <h2>Nome do vendedor: {{usuarioLogado?.nomeusuario}}</h2>
+    <h3>Nome do vendedor: {{usuarioLogado?.nomeusuario}}</h3>
+    <p>Nome do vendedor: {{usuarioLogado?.nomeusuario}}</p>
+
+    
+    <button ion-item *ngFor="let item of items" (click)="showClickMesa(item.idContaMesa, item.idMesa, item.numMesa)">
       
       <ion-thumbnail item-start>
         <div *ngIf = "item.Status == 'Fechado'">

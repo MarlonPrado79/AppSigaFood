@@ -10,6 +10,7 @@ export class LoginService{
     }
 
     findAll(login: string, senha: string) : Observable<LoginDTO>{
-        return this.http.get<LoginDTO>(`${API_CONFIG.baseUrl}/ValidaLogin?Login=${login}&Senha=${senha}`);
+        return this.http.get<LoginDTO>(
+            `${API_CONFIG.baseUrl}/ValidaLogin?Login=${login}&Senha=${senha}`);
     }
 }

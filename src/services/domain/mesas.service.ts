@@ -12,6 +12,9 @@ export class MesasService{
 
     findAll() : Observable<MesasDTO[]>{
         return this.http.get<MesasDTO[]>(`${API_CONFIG.baseUrl}/ListaMesas`);
+    }
 
+    findNumMesa(numMesa: string) : Observable<MesasDTO[]>{
+        return this.http.get<MesasDTO[]>(`${API_CONFIG.baseUrl}/ListaMesas?numMesa=${numMesa}`);
     }
 }

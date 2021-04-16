@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AlertController, IonicPage, MenuController, NavController } from 'ionic-angular';
 import { LoginDTO } from '../../models/login.dto';
+import { AuthService } from '../../services/auth.service';
 import { LoginService } from '../../services/domain/login.service';
 
 @IonicPage()
@@ -23,6 +24,7 @@ export class HomePage {
     public navCtrl: NavController, 
     public menu:MenuController,
     public loginService: LoginService,
+    public auth: AuthService,
     public altertCtrl: AlertController ) {
 
   }
@@ -36,7 +38,36 @@ export class HomePage {
   }
 
   login(){
-    this.loginService.findAll(this.loginUsuario.Login, this.loginUsuario.Senha)
+    
+    this.auth.authenticate(this.loginUsuario)
+      .subscribe(response => {
+        console.log(response);
+        this.loginUsuario = response;
+
+        if (this.loginUsuario.Status == "Ok"){
+          console.log("Passou " + this.loginUsuario.NomeUsuario),
+          
+          this.auth.successfullLogin(this.loginUsuario.idUsuario, this.loginUsuario.NomeUsuario);
+          
+          this.navCtrl.setRoot("MesasPage")}
+        else{
+          this.auth.logout;
+          this.falhaLogin(this.loginUsuario.Status);
+        } 
+
+
+
+
+      },
+      error => {
+        this.auth.logout;
+        this.falhaLogin(this.loginUsuario.Status);
+      })
+
+
+
+
+    /*this.loginService.findAll(this.loginUsuario.Login, this.loginUsuario.Senha)
     .subscribe(response => {
       console.log(response);
       this.loginUsuario = response;
@@ -47,20 +78,18 @@ export class HomePage {
         this.navCtrl.setRoot("MesasPage")}
       else{
         this.falhaLogin();
-        /*console.log("Ouve um erro " + this.loginUsuario.NomeUsuario);*/
       } 
 
-      /*console.log("Houve a resposta 200: " + this.loginUsuario.NomeUsuario);*/
     },
     error => {
       this.falhaLogin();
-    });
+    });*/
   }
 
-  async falhaLogin() {
+  async falhaLogin(mensagem: string) {
     const alert = await this.altertCtrl.create({
         title: 'Falha de autenticação',
-        message: 'Usuário ou senha incorretos',
+        message: mensagem,
         enableBackdropDismiss: false,
         buttons: ['Ok']
     });

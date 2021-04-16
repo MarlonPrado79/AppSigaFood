@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { VendaDTO } from '../../models/venda.dto';
+import { StorageService } from '../../services/storage.service';
 
 /* */
 
@@ -12,11 +13,24 @@ import { VendaDTO } from '../../models/venda.dto';
 export class VendaPage {
 
   items : VendaDTO;
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  nomeusuario : string;
+
+  constructor(public navCtrl: NavController, 
+              public navParams: NavParams,
+              public storage : StorageService) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad VendaPage');
+
+    let UsuarioLogado = this.storage.getUsuario().nomeusuario;
+
+    if (UsuarioLogado && UsuarioLogado){
+      this.nomeusuario = UsuarioLogado;
+    }
+
+    console.log('UsuarioLogado 1='+UsuarioLogado);
+    console.log('UsuarioLogado 2='+this.nomeusuario);
+
 
     this.items = {
       idVenda:"1",
